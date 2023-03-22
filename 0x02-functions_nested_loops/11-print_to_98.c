@@ -1,44 +1,51 @@
 #include "main.h"
 
 /**
- * print_times_table - multiplication table
- * @n: number or rows and columns
+ * print_to_98 - print until 98
+ *
+ * @n: number to start
+ *
  * Return: void
  */
-void print_times_table(int n)
+void print_to_98(int n)
 {
-	int col, row;
+	int i, neg;
 
-	if (n > 15 || n < 0)
-		return;
-	for (row = 0 ; row <= n ; row++)
+	i = n;
+	neg = 0;
+
+	while (i != 98)
 	{
-	for (col = 0 ; col <= n ; col++)
-	{
-		if (col != 0)
+		if (i < 0)
 		{
-		if ((row * col) < 100)
-			_putchar(' ');
-		if ((row * col) < 10)
-			_putchar(' ');
+		_putchar('-');
+		neg = 1;
+		i *= -1;
+		}
+		if (i >= 100)
+		{
+		_putchar('0' + (i / 100));
+		_putchar('0' + (i % 100) / 10);
+		}
+		else if (i >= 10)
+			_putchar('0' + (i / 10));
+		_putchar('0' + (i % 10));
+		_putchar(',');
 		_putchar(' ');
-		}
-		if (row * col >= 100)
+
+		if (neg == 1)
 		{
-		_putchar('0' + (row * col) / 100);
-		_putchar('0' + ((row * col) % 100) / 10);
-		_putchar('0' + ((row * col) % 100) % 10);
+			neg = 0;
+			i *= -1;
 		}
-		else if (row * col >= 10)
-		{
-		_putchar('0' + (row * col) / 10);
-		_putchar('0' + (row * col) % 10);
-		}
+
+		if (i > 98)
+			i--;
 		else
-			_putchar('0' + (row * col));
-		if (col  != n)
-			_putchar(',');
+			i++;
 	}
+	_putchar('9');
+	_putchar('8');
 	_putchar('\n');
-	}
 }
+
